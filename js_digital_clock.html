@@ -1,0 +1,137 @@
+<!-- Digital Clock -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+<style>
+    #box
+    {
+        height: 250px;
+        width: 500px;
+        margin: auto;
+        position: relative;
+        border: 8px solid black;
+        border-radius: 45px;
+        background-color: rgba(68, 63, 63, 0.356);
+    }
+    #box2
+    {
+        height: 200px;
+        width: 400px;
+        margin: auto;
+        position: relative;
+        border: 3px solid rgba(43, 43, 43, 0.639);
+        border-radius: 45px;
+        margin-top: 21px;
+        background-color: rgba(170, 207, 250, 0.781);
+    }
+    #box h1
+    {
+        font-size: 40px;
+        text-align: center;
+        position: absolute;
+        color:black;
+        top: 38px;
+        left: 60px;
+    }
+    #h2
+    {
+        font-size: 40px;
+        text-align: center;
+        position: absolute;
+        color:rgb(0, 0, 0);
+        top:-5px;
+        left: 177px;
+    }
+    #box h3
+    {
+        font-size: 15px;
+        position: absolute;
+        color:rgb(0, 0, 0);
+        top: 115px;
+        left: 110px;
+    }
+</style>
+<script>
+    function showtime()
+    {
+        var dt = new Date();
+        var h  = dt.getHours();
+        var m  = dt.getMinutes();
+        var s  = dt.getSeconds();
+        var d  = dt.getDate();
+        var mm = dt.getMonth();
+        var y  = dt.getFullYear();
+        mm++;
+
+        var day = dt.getDay();
+        var dayname ="";
+        if(day==0){
+            dayname="Sunday";
+        } 
+        else if(day==1)
+        {
+            dayname="Monday";
+        } 
+        else if(day==2)
+        {
+            dayname="Tuesday";
+        } 
+        else if(day==3)
+        {
+            dayname="Wednesday";
+        } 
+        else if(day==4)
+        {
+            dayname="Thursday";
+        } 
+        else if(day==5)
+        {
+            dayname="Friday";
+        } 
+        else if(day==6)
+        {
+            dayname="Saturday";
+        } 
+
+
+        var z  = "AM";
+        if(h=>12){
+            z="PM";
+            h=h-12;
+        }
+
+        var time = twodigit(h)+":"+twodigit(m)+":"+twodigit(s) +z;
+        document.getElementById("h1").innerHTML = time;
+
+        var date = dayname+", "+twodigit(d)+"-"+twodigit(mm)+"-"+y;
+        document.getElementById("h3").innerHTML = date;
+        
+        sett=setTimeout(showtime, 1000);
+    }
+    function twodigit(x)
+    {
+        if(x<10)
+        {
+            return "0"+x;
+        }
+        else
+        {
+            return x;
+        }
+    }
+</script>
+</head>
+<body onload="showtime()">
+    <div id="box" >
+        <h2 id="h2">Prince</h2>
+        <div id="box2">
+            <h1 id="h1">05:05:05 AM</h1>
+            <h3 id="h3">01-01-2000</h3>
+        </div>
+    </div>
+    
+</body>
+</html>
